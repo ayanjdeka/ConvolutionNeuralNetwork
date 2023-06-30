@@ -1,6 +1,6 @@
 '''
-This is an implementation of the RNN MNIST digits classification,
-with a SGD optimizer
+This is an implementation of the MLP MNIST digits classification,
+with an adam optimizer
 '''
 
 from __future__ import absolute_import
@@ -13,11 +13,13 @@ from tensorflow.keras.layers import Activation, Dense, Dropout
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
 from tensorflow.keras.utils import to_categorical, plot_model
 from tensorflow.keras.datasets import mnist
-
+#load the dataset, compute the number of labels, convert to a one-hot vector
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 num_labels = len(np.unique(y_train))
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
+
+#resize the image dimensions
 image_size = x_train.shape[1]
 input_size = image_size * image_size
 x_train = np.reshape(x_train, [-1, input_size])
